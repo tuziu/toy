@@ -1,12 +1,10 @@
 #ifndef U_2ZIU_K
 #define U_2ZIU_K
 
-#include "mtrand.h"
-#include <iostream>
-#include <ctime>
 #include <cassert>
 #include <vector>
 #include <cmath>
+#include <cstddef>
 
 typedef signed int size_2t;
 
@@ -17,6 +15,11 @@ struct Result
 	size_2t num_clust;
 	size_2t num_unchenged;
 };
+
+inline size_t two2one(const size_t aX,const size_t aY, const size_t aSize)
+{
+    return (aX * aSize ) + aY;
+}
 
 class Cykling_Indeks
 {
@@ -43,23 +46,18 @@ public:
 	}
 };
 
-
-
-
-
 class UkladEwol
 {
 private:
-	size_2t rozmiar_;
+	const size_2t rozmiar_;
 	const Cykling_Indeks m_indeks;
-	size_2t **stany_;
-	size_2t **m_chenged;
+	std::vector<size_2t> stany_;
+	std::vector<size_2t> m_chenged;
 	double m_prawd;
-	size_2t **tab;
-
+	std::vector<size_2t> tab;
 
 public:
-	UkladEwol(size_2t size, double p);
+	UkladEwol(const size_2t size,const double p);
 	~UkladEwol();
 
 private:
@@ -71,60 +69,29 @@ public:
 	inline void cheng_p(double );
 	void reset();
 
-public:
     inline void iterate();
     Result get_results();
 
 private:
-    int is_claster(size_2t& cl_size, size_2t ,size_2t );
+    int is_claster(size_2t& cl_size, const size_2t ,const size_2t );
 	inline size_2t how_many_unchende();
     void step();
-
-private:
-    template<typename T>
-    static T** create_tab(size_2t i);
 };
-
-void UkladEwol::cheng_p(double p)
-{
-	m_prawd=p;
-}
-
-inline void UkladEwol::iterate()
-{
-    for(size_2t i=0;i<pow(rozmiar_,2);++i)
-    {
-        step();
-    }
-}
-
-inline size_2t UkladEwol::how_many_unchende()
-{
-    size_2t h=0;
-    for(size_2t i=0;i<rozmiar_;++i)
-    {
-        for(size_2t j=0;j<rozmiar_;++j)
-        {
-            h+=m_chenged[i][j];
-        }
-    }
-    return h;
-}
 
 class DE
 {
 	private:
-		size_2t ** s_;
+		const std::vector<size_2t>& s_;
 		const Cykling_Indeks& i_;
 	public:
-		DE(size_2t ** ss,const Cykling_Indeks& ii): s_(ss), i_(ii) {}
-		size_2t operator() (size_2t x,size_2t y)
+		DE(const std::vector<size_2t>& ss,const Cykling_Indeks& ii): s_(ss), i_(ii) {}
+		size_2t operator() (const size_2t x,const size_2t y) const
 		{
-			return s_[x][y]*(
-                    s_[i_(x+1)][y]+
-                    s_[x][i_(y+1)]+
-                    s_[i_(x-1)][y]+
-                    s_[x][i_(y-1)]
+			return s_[two2one(x,y,s_.size())]*(
+                    s_[two2one(i_(x+1),y,s_.size())]+
+                    s_[two2one(x,i_(y+1),s_.size())]+
+                    s_[two2one(i_(x-1),y,s_.size())]+
+                    s_[two2one(x,i_(y-1),s_.size())]
                     );
 		}
 };
@@ -132,12 +99,12 @@ class DE
 class Obracacz
 {
 private:
-	size_2t ** s_;
+	std::vector<size_2t>& s_;
 public:
-	Obracacz(size_2t ** ss): s_(ss) {}
-	void operator() (size_2t x,size_2t y)
+	Obracacz(std::vector<size_2t>& ss): s_(ss) {}
+	void operator() (const size_2t x,const size_2t y)
 	{
-		s_[x][y]*=-1;
+		s_[two2one(x,y,s_.size())]*=-1;
 	}
 };
 
