@@ -4,6 +4,7 @@ set( toy_src
         main.cpp
         mtrand.cpp
         uklad.cpp
+        box.cpp
     )
 
 #include_directories ("${PROJECT_SOURCE_DIR}/MathFunctions")
