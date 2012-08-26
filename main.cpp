@@ -27,16 +27,16 @@ std::vector<Result> t(size_t ll ,size_t i,size_t it)
 
 int main()
 {
-    size_t ll=0 , aa=0, bb=0;
+    /*size_t ll=0 , aa=0, bb=0;
         std::cout << "roz" << std::endl;
         std::cin >> ll ;
         std::cout << "\nusr" << std::endl;
         std::cin >> aa ;
         std::cout << "\niter" << std::endl;
         std::cin >> bb ;
+    */
 
-
-	std::vector<Result> a = t(ll,aa,bb);
+	std::vector<Result> a = t(100,50,300);
 	int k=0;
 	for(std::vector<Result>::iterator i=a.begin();i!=a.end();++i)
 	{
