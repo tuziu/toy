@@ -12,7 +12,6 @@ typedef signed int size_2t;
 
 struct Result
 {
-
 	double avg_mass;
 	size_2t max_size;
 	size_2t num_clust;
@@ -22,12 +21,12 @@ struct Result
 class Cykling_Indeks
 {
 private:
-	size_2t m_uper_border;
+	const size_2t m_uper_border;
 
 public:
-	Cykling_Indeks(size_2t uper_border): m_uper_border(uper_border) {}
+	Cykling_Indeks(const size_2t uper_border): m_uper_border(uper_border) 
+    {}
 
-public:
 	size_2t operator() (const size_2t i) const
 	{
 		assert(-1 <= i);
@@ -52,7 +51,7 @@ class UkladEwol
 {
 private:
 	size_2t rozmiar_;
-	Cykling_Indeks m_indeks;
+	const Cykling_Indeks m_indeks;
 	size_2t **stany_;
 	size_2t **m_chenged;
 	double m_prawd;
@@ -116,9 +115,9 @@ class DE
 {
 	private:
 		size_2t ** s_;
-		Cykling_Indeks& i_;
+		const Cykling_Indeks& i_;
 	public:
-		DE(size_2t ** ss,Cykling_Indeks& ii): s_(ss), i_(ii) {}
+		DE(size_2t ** ss,const Cykling_Indeks& ii): s_(ss), i_(ii) {}
 		size_2t operator() (size_2t x,size_2t y)
 		{
 			return s_[x][y]*(
@@ -132,14 +131,14 @@ class DE
 
 class Obracacz
 {
-	private:
-		size_2t ** s_;
-	public:
-		Obracacz(size_2t ** ss): s_(ss) {}
-		void operator() (size_2t x,size_2t y)
-		{
-			s_[x][y]*=-1;
-		}
+private:
+	size_2t ** s_;
+public:
+	Obracacz(size_2t ** ss): s_(ss) {}
+	void operator() (size_2t x,size_2t y)
+	{
+		s_[x][y]*=-1;
+	}
 };
 
 class Box

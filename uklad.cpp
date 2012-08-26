@@ -25,6 +25,8 @@ T **UkladEwol::create_tab(size_2t i) // static
 
 UkladEwol::~UkladEwol()
 {
+    double f = 1.0;
+    int aa = (double)f;
     for(size_2t i=0;i<rozmiar_;++i)
 	{
 		delete [] stany_[i];

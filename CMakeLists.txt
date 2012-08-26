@@ -8,7 +8,7 @@ set( toy_src
 
 #include_directories ("${PROJECT_SOURCE_DIR}/MathFunctions")
 #add_subdirectory (MathFunctions) 
-set ( CMAKE_CXX_FLAGS_RELEASE "-o2 -mtune=native" ${CMAKE_CXX_FLAGS_RELEASE} )
+set ( CMAKE_CXX_FLAGS "-O2 -mtune=native " )
  
 # add the executable
 add_executable (Tutorial ${toy_src})
