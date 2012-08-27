@@ -75,7 +75,7 @@ void UkladEwol::step()
 
 }
 
-Result UkladEwol::get_results()
+Result UkladEwol::get_results() const
 {
     Result r;
     
@@ -115,7 +115,7 @@ Result UkladEwol::get_results()
 }
 
 
-int UkladEwol::is_claster(size_2t& cl_size,const size_2t x,const size_2t y)
+int UkladEwol::is_claster(size_2t& cl_size,const size_2t x,const size_2t y) const
 {
     if(tab[two2one(x,y,m_chenged.size())]==1)
     {

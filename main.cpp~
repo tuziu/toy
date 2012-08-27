@@ -1,6 +1,5 @@
 #include <iostream>
-#include "box.h"
-
+#include "uklad.h"
 std::vector<Result> t(size_t ll ,size_t i,size_t it)
 {
     std::vector<Result> k(it);

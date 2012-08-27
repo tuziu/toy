@@ -30,10 +30,10 @@ public:
 	void reset();
 
     void iterate();
-    Result get_results();
+    Result get_results() const;
 
 private:
-    int is_claster(size_2t& cl_size, const size_2t ,const size_2t );
+    int is_claster(size_2t& cl_size, const size_2t ,const size_2t ) const ;
 	size_2t how_many_unchende() const;
     void step();
 };

@@ -1,0 +1,36 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/tuziu/projects/toy/Cykling_Indeks.h
+def.h
+/home/tuziu/projects/toy/def.h
+cassert
+-
+
+/home/tuziu/projects/toy/box.h
+uklad.h
+/home/tuziu/projects/toy/uklad.h
+cstddef
+-
+
+/home/tuziu/projects/toy/def.h
+
+/home/tuziu/projects/toy/main.cpp
+iostream
+-
+box.h
+/home/tuziu/projects/toy/box.h
+
+/home/tuziu/projects/toy/uklad.h
+def.h
+/home/tuziu/projects/toy/def.h
+vector
+-
+Cykling_Indeks.h
+/home/tuziu/projects/toy/Cykling_Indeks.h
+
