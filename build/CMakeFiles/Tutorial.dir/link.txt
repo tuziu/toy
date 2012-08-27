@@ -1,1 +1,0 @@
-/usr/bin/c++   -g -Wall    CMakeFiles/Tutorial.dir/main.cpp.o CMakeFiles/Tutorial.dir/mtrand.cpp.o CMakeFiles/Tutorial.dir/uklad.cpp.o CMakeFiles/Tutorial.dir/box.cpp.o  -o Tutorial -rdynamic 

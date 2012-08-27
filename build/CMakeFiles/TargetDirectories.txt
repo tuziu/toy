@@ -1,1 +1,0 @@
-/home/tuziu/projects/toy/build/CMakeFiles/Tutorial.dir
