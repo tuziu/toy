@@ -91,7 +91,7 @@ Result UkladEwol::get_results()
         {
             ++r.num_clust;
             size_2t cl_s=0;
-            is_claster(cl_s,i,i%rozmiar_);
+            is_claster(cl_s,i/rozmiar_,i%rozmiar_);
             if(cl_s>r.max_size)
             {
                 r.max_size=cl_s;

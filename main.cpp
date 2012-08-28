@@ -37,7 +37,7 @@ int main()
         std::cin >> bb ;
     */
 
-	std::vector<Result> a = t(10,5,30);
+	std::vector<Result> a = t(500,50,100);
 	int k=0;
 	for(std::vector<Result>::iterator i=a.begin();i!=a.end();++i)
 	{
