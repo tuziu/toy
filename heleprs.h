@@ -12,16 +12,18 @@ class DE
 {
 	const std::vector<size_2t>& s_;
 	const Cykling_Indeks& i_;
+	const size_t mSize;
 public:
-	DE(const std::vector<size_2t>& ss,const Cykling_Indeks& ii): s_(ss), i_(ii) 
+	DE(const std::vector<size_2t>& ss,const Cykling_Indeks& ii,const size_t aSize)		
+		: s_(ss), i_(ii) , mSize(aSize)
     {}
 	size_2t operator() (const size_2t x,const size_2t y) const
 	{
-		return s_[two2one(x,y,s_.size())]*(
-                s_[two2one(i_(x+1),y,s_.size())]+
-                s_[two2one(x,i_(y+1),s_.size())]+
-                s_[two2one(i_(x-1),y,s_.size())]+
-                s_[two2one(x,i_(y-1),s_.size())]
+		return s_[two2one(x,y,mSize)]*(
+                s_[two2one(i_(x+1),y,mSize)]+
+                s_[two2one(x,i_(y+1),mSize)]+
+                s_[two2one(i_(x-1),y,mSize)]+
+                s_[two2one(x,i_(y-1),mSize)]
                 );
 	}
 };
@@ -29,12 +31,14 @@ public:
 class Obracacz
 {
 	std::vector<size_2t>& s_;
+	const size_t mSize;
 public:
-	Obracacz(std::vector<size_2t>& ss): s_(ss) 
+	Obracacz(std::vector<size_2t>& ss,const size_t aSize)
+		: s_(ss) , mSize(aSize) 
     {}
 	void operator() (const size_2t x,const size_2t y)
 	{
-		s_[two2one(x,y,s_.size())]*=-1;
+		s_[two2one(x,y,mSize)]*=-1;
 	}
 };
 
